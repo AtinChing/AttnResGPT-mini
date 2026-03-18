@@ -1,0 +1,74 @@
+experiment:
+  name: debug_tiny
+  seed: 1337
+  deterministic: false
+  notes: "Very small synthetic debug run for shape checks and fast smoke tests."
+
+data:
+  dataset_type: synthetic
+  tokenizer_type: char
+  block_size: 64
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 0
+  pin_memory: false
+  synthetic:
+    num_train_sequences: 512
+    num_val_sequences: 128
+    min_pattern_length: 4
+    max_pattern_length: 10
+    task_mix: ["copy", "reverse", "sort", "shift"]
+
+model:
+  architecture: baseline
+  max_seq_len: 64
+  d_model: 64
+  n_layers: 2
+  n_heads: 4
+  d_ff: 256
+  dropout: 0.0
+  bias: true
+  tie_weights: true
+  norm_eps: 1.0e-5
+  init_std: 0.02
+  attnres:
+    enabled: false
+    window_size: null
+    temperature: 1.0
+    rmsnorm_keys: true
+    zero_init_queries: true
+    include_embedding: true
+    keep_embedding_in_window: true
+    final_readout: true
+
+training:
+  max_steps: 40
+  grad_accum_steps: 1
+  learning_rate: 0.001
+  min_lr: 0.0001
+  warmup_steps: 5
+  weight_decay: 0.01
+  beta1: 0.9
+  beta2: 0.95
+  grad_clip: 1.0
+  mixed_precision: false
+  amp_dtype: float32
+  compile_model: false
+  log_interval: 1
+  eval_interval: 10
+  probe_interval: 10
+  checkpoint_interval: 20
+  eval_max_batches: 10
+  device: auto
+  resume_from: null
+
+logging:
+  output_root: runs
+  save_probes: true
+  save_checkpoints: true
+  keep_last_k_checkpoints: 1
+
+evaluation:
+  max_batches: 10
+  run_ablation: true
+  ablation_fractions: [0.25, 0.5]
