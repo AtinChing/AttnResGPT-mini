@@ -225,11 +225,17 @@ Artifacts saved under each run directory:
 
 Five Colab notebooks are included:
 
+- `notebooks/0_colab_full_pipeline.ipynb`
 - `notebooks/1_debug_and_sanity.ipynb`
 - `notebooks/2_tiny_overfit.ipynb`
 - `notebooks/3_smoke_test.ipynb`
 - `notebooks/4_pilot_comparison.ipynb`
 - `notebooks/5_analysis_and_plots.ipynb`
+
+Recommended for Colab:
+
+- Use `notebooks/0_colab_full_pipeline.ipynb` if you want one notebook that literally combines the workflow from notebooks 1 through 5 into a single Colab-friendly file.
+- Use `notebooks/1_debug_and_sanity.ipynb` through `notebooks/5_analysis_and_plots.ipynb` if you prefer a modular workflow.
 
 Each notebook:
 
